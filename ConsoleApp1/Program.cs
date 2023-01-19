@@ -5,6 +5,8 @@ namespace ConsoleApp1
 {
     class Program
     {
+        private StreamReader input;
+        IList<string> words = new List<string>();
         static void Main(string[] args)
         {
             //Choose an option
@@ -34,17 +36,25 @@ namespace ConsoleApp1
                     "x - Exit");
 
                 string i = Console.ReadLine();
+                Program x = new Program();
 
                 switch (i)
                 {
                     //Imports Words from File
                     case "1":
-                        import();
+                        x.import();
                         break;
+
                     case "2":
+                        //if (words)
+                        //{
+                         //   Console.WriteLine("No words in array");
+                       // }
                         break;
+
                     case "3":
                         break;
+
                     case "4":
                         break;
                     case "5":
@@ -72,18 +82,17 @@ namespace ConsoleApp1
         }
 
         //Import words from a text file and return the number of words
-        private static void import()
+        private void import()
         {
-            StreamReader o = new StreamReader("Words.txt");
+            input = new StreamReader("C:/Users/Kelsey Phillips/OneDrive - Algonquin College/Documents/Level5/CST8359 - dotNet Enterprise/Lab/repos/ConsoleApp1/Words.txt");
             string line;
-            IList<string> words = new List<string>();
+            words 
  
-            while ((line = o.ReadLine())!= null)
+            while ((line = input.ReadLine())!= null)
             {
                 words.Add(line);
             }
-            Console.WriteLine("There are " +words.Count() + " many words.");
-
+            Console.WriteLine("There are " + words.Count() + " words.");
         }
 
 
