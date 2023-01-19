@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml.Serialization;
 
 namespace ConsoleApp1
 {
@@ -36,7 +37,9 @@ namespace ConsoleApp1
 
                 switch (i)
                 {
+                    //Imports Words from File
                     case "1":
+                        import();
                         break;
                     case "2":
                         break;
@@ -65,6 +68,21 @@ namespace ConsoleApp1
                 }
 
             }
+
+        }
+
+        //Import words from a text file and return the number of words
+        private static void import()
+        {
+            StreamReader o = new StreamReader("Words.txt");
+            string line;
+            IList<string> words = new List<string>();
+ 
+            while ((line = o.ReadLine())!= null)
+            {
+                words.Add(line);
+            }
+            Console.WriteLine("There are " +words.Count() + " many words.");
 
         }
 
