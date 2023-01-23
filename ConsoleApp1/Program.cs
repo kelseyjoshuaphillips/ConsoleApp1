@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Xml.Serialization;
 
 namespace ConsoleApp1
@@ -49,7 +50,7 @@ namespace ConsoleApp1
                     case "2":
                         if (x.words.Count == 0)
                         {
-                            Console.WriteLine("No words in array");
+                            Console.WriteLine("Please load words first!");
                             break;
                         }
                         x.BubbleSort(x.words);
@@ -57,24 +58,60 @@ namespace ConsoleApp1
                         break;
                     //Linq Sort
                     case "3":
+                        if (x.words.Count == 0)
+                        {
+                            Console.WriteLine("Please load words first!");
+                            break;
+                        }
+                        x.LINQSort(x.words);
                         break;
                     //Count distinct words
                     case "4":
+                        if (x.words.Count == 0)
+                        {
+                            Console.WriteLine("Please load words first!");
+                            break;
+                        }
                         break;
                     //Last 10 words of file
                     case "5":
+                        if (x.words.Count == 0)
+                        {
+                            Console.WriteLine("Please load words first!");
+                            break;
+                        }
                         break;
                     //Print in reverse order
                     case "6":
+                        if (x.words.Count == 0)
+                        {
+                            Console.WriteLine("Please load words first!");
+                            break;
+                        }
                         break;
                      //Display words that end with D and display count
                     case "7":
+                        if (x.words.Count == 0)
+                        {
+                            Console.WriteLine("Please load words first!");
+                            break;
+                        }
                         break;
                     //Contain q and print them and count
                     case "8":
+                        if (x.words.Count == 0)
+                        {
+                            Console.WriteLine("Please load words first!");
+                            break;
+                        }
                         break;
                     //More than 3 letters long and start with a
                     case "9":
+                        if (x.words.Count == 0)
+                        {
+                            Console.WriteLine("Please load words first!");
+                            break;
+                        }
                         break;
                     //Exit
                     case "x":
@@ -135,7 +172,8 @@ namespace ConsoleApp1
         private IList<string> LINQSort(IList<string> words)
         {
             //words=>words.Sort
-
+            words = words.OrderBy(x => x).ToList();            
+            
             return words;
         }
     }
