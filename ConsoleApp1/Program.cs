@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Tracing;
 using System.Linq;
 using System.Xml.Serialization;
 
@@ -72,6 +73,7 @@ namespace ConsoleApp1
                             Console.WriteLine("Please load words first!");
                             break;
                         }
+                        x.LINQDistinct(x.words);
                         break;
                     //Last 10 words of file
                     case "5":
@@ -80,6 +82,7 @@ namespace ConsoleApp1
                             Console.WriteLine("Please load words first!");
                             break;
                         }
+                        x.LINQLast10(x.words);
                         break;
                     //Print in reverse order
                     case "6":
@@ -159,8 +162,6 @@ namespace ConsoleApp1
                         words[j] = temp;
                     }
                 }
-                
-
             }
             watch.Stop();
             var time = watch.ElapsedMilliseconds;
@@ -171,9 +172,29 @@ namespace ConsoleApp1
 
         private IList<string> LINQSort(IList<string> words)
         {
-            //words=>words.Sort
-            words = words.OrderBy(x => x).ToList();            
-            
+            var watch = new System.Diagnostics.Stopwatch();
+            watch.Start();
+            words = words.OrderBy(x => x).ToList();
+            watch.Stop();
+            var time = watch.ElapsedMilliseconds;
+            Console.WriteLine("Time elapsed: " + time + "ms");
+            return words;
+        }
+        private IList<string> LINQDistinct (IList<string> words)
+        {
+            //words = words.Distinct().OrderBy(x => x).ToList();
+            //var blah = words.Take(10);
+            //foreach(string word in blah)
+            //Console.WriteLine(word);
+            int count = words.Distinct().ToList().Count();
+            Console.WriteLine("Distinct count is " + count);
+            return words;
+        }
+        private IList<string> LINQLast10(IList<string> words)
+        {
+            words = words.Reverse().Take(10).Reverse().ToList();
+            foreach(string word in words)
+                Console.WriteLine(word); 
             return words;
         }
     }
