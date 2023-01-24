@@ -91,6 +91,7 @@ namespace ConsoleApp1
                             Console.WriteLine("Please load words first!");
                             break;
                         }
+                        x.ReversePrint(x.words);
                         break;
                      //Display words that end with D and display count
                     case "7":
@@ -99,6 +100,7 @@ namespace ConsoleApp1
                             Console.WriteLine("Please load words first!");
                             break;
                         }
+                        x.EndWithD(x.words);
                         break;
                     //Contain q and print them and count
                     case "8":
@@ -107,6 +109,7 @@ namespace ConsoleApp1
                             Console.WriteLine("Please load words first!");
                             break;
                         }
+                        x.ContainsQ(x.words);
                         break;
                     //More than 3 letters long and start with a
                     case "9":
@@ -115,6 +118,7 @@ namespace ConsoleApp1
                             Console.WriteLine("Please load words first!");
                             break;
                         }
+                        x.MoreThan3Long(x.words);
                         break;
                     //Exit
                     case "x":
@@ -130,6 +134,8 @@ namespace ConsoleApp1
             }
 
         }
+
+
 
         //Import words from a text file and return the number of words
         private void Import()
@@ -197,6 +203,39 @@ namespace ConsoleApp1
                 Console.WriteLine(word); 
             return words;
         }
+        private void ReversePrint(IList<string> words)
+        {
+            words = words.Reverse().ToList();
+            foreach (String word in words)
+                Console.WriteLine(word);
+        }
+        private void EndWithD(IList<string> words)
+        {
+            words = words.Where(x => x.EndsWith('d')).ToList();
+            int count = words.Count();
+            Console.WriteLine("The " + count + " words that end in 'd' are;");
+            foreach (String word in words)
+                Console.WriteLine(word);
+            
+        }
+        private void ContainsQ(IList<string> words)
+        {
+            words = words.Where(x => x.Contains('q')).ToList();
+            int count = words.Count();
+            Console.WriteLine("The " + count + " words that contain 'q' are; ");
+            foreach (String word in words)
+                Console.WriteLine(word);
+
+        }
+        private void MoreThan3Long(IList<string> words)
+        {
+            words = words.Where(x => x.Length > 3 && x.StartsWith('a')).ToList();
+            int count = words.Count();
+            Console.WriteLine("The " + count + " words that are more 3 characters and start with 'a' are;");
+            foreach(String word in words)
+                Console.WriteLine(word);
+        }
+
     }
 
 
